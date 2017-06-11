@@ -9,20 +9,28 @@ judge = 0
 truelineplus = 0
 onephase = 0
 originop = 0
-
-
-for line in range(1, len(codelines), 4):
-
+line = 1
+while line < len(codelines):
     eofcheck = codelines[line]
 
     if eofcheck == 'nexus':
         break
 
     rc = [codelines[line][:-1], codelines[line + 1][:-1], codelines[line + 2][:-1], codelines[line + 3][:-1]]
-
+    print(rc)
     if rc[0][rc[0].find(';') + 1:] == 'compositionb' and judge == 1 and truelineplus != 0:  # if 제어문 분기점 검사
         truelineplus -= 4
         rc = ['', '', '', '']
+
+    if rc[0][rc[0].find(';') + 1:] == 'compositiona' and judge == 0:
+        rc = ['', '', '', '']
+
+    if rc[0][rc[0].find(';') + 1:] == 'compositiona' and judge == 1 and onephase != 0:
+        onephase -= 4
+        if onephase == 0:
+            line = line - (originop+4)
+            judge = 0
+            originop = 0
 
 
     if rc[0][:8] == 'Tassadar':
@@ -50,7 +58,7 @@ for line in range(1, len(codelines), 4):
             anum = rc[2].split("storm")
             ar.count(variables, anum[0], anum[1], rc[3], rc[1][6:])
 
-    if rc[0][:6] == 'Jaina':
+    if rc[0][:5] == 'Jaina':
         ja = hos_heroes.Jaina()
 
         if rc[1][:9] == 'frostbolt':
@@ -70,7 +78,7 @@ for line in range(1, len(codelines), 4):
             truelineplus = int(gotolinesplit[1])
 
         if rc[1][:11] == 'totalrecall':
-            judge = ts.totalrecall(variables, rc[13:], line)
+            judge = ts.totalrecall(variables, rc[1][12:], line)
             onephase = int(rc[3])
             originop = int(rc[3])
 
@@ -83,11 +91,5 @@ for line in range(1, len(codelines), 4):
         if rc[1][:14] == 'handofragnaros':
             variables[rc[3]] = ra.handofragnaros(rc[1][15:], rc[2])
 
-    if rc[0][rc[0].find(';') + 1:] == 'compositiona' and judge == 1 and onephase != 0:
-        onephase -= 4
-        if onephase == 0:
-            line -= (originop + 4)
-            judge = 0
-
-    print(line)
-print(variables)
+    line += 4
+    print(variables)
