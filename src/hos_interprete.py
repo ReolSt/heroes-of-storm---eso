@@ -10,6 +10,7 @@ truelineplus = 0
 onephase = 0
 originop = 0
 line = 1
+
 while line < len(codelines):
     eofcheck = codelines[line]
 
@@ -17,7 +18,7 @@ while line < len(codelines):
         break
 
     rc = [codelines[line][:-1], codelines[line + 1][:-1], codelines[line + 2][:-1], codelines[line + 3][:-1]]
-    print(rc)
+
     if rc[0][rc[0].find(';') + 1:] == 'compositionb' and judge == 1 and truelineplus != 0:  # if 제어문 분기점 검사
         truelineplus -= 4
         rc = ['', '', '', '']
@@ -78,7 +79,7 @@ while line < len(codelines):
             truelineplus = int(gotolinesplit[1])
 
         if rc[1][:11] == 'totalrecall':
-            judge = ts.totalrecall(variables, rc[1][12:], line)
+            judge = ts.totalrecall(variables, rc[1][12:])
             onephase = int(rc[3])
             originop = int(rc[3])
 
@@ -92,4 +93,4 @@ while line < len(codelines):
             variables[rc[3]] = ra.handofragnaros(rc[1][15:], rc[2])
 
     line += 4
-    print(variables)
+print(variables)
