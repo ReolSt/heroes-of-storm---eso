@@ -42,7 +42,7 @@ while line < len(codelines):
             if rc[1][12:] == 'templarswill':
                 ta.psiinfusion(variables, ta.templarswill(variables, rc[3], rc[1][25:]))
 
-    if rc[0][:7] == 'Artanis':
+    if rc[0][:7] == 'Artanis':        # 리스트 관련 빌트인
         ar = hos_heroes.Artanis()
 
         if rc[1][:6] == 'append':
