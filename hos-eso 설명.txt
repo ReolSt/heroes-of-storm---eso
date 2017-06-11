@@ -59,19 +59,19 @@ psionicechoW 모드 : 기본적인 것은 focusedbeam모드와 같지만, 구분자 storm으로 구�
                     리스트 형태로 저장합니다.
 
 
-templarwill 모드 : 이 스킬이 psiinfusion의 모드인지, 모드가 아닌지는 좀 더 생각해 보아야 겠지만, 일단 psiinfusion 없이는
+templarswill 모드 : 이 스킬이 psiinfusion의 모드인지, 모드가 아닌지는 좀 더 생각해 보아야 겠지만, 일단 psiinfusion 없이는
 
                    값을 변수에 저장할 수 없으니, psiinfusion - 파생 모드라고 하겠습니다. 이 모드는 또한 4가지 모드를 가지고
 
                    있습니다.
 
-templarwill 모드의 khalascelerity 모드 : 리스트를 받아 sum(summary)을 계산하여 psiinfusion으로 보냅니다.
+templarswill 모드의 khalascelerity 모드 : 리스트를 받아 sum(summary)을 계산하여 psiinfusion으로 보냅니다.
 
-templarwill 모드의 khalasembrace 모드 : khalascelerity와 기본적인 것은 같지만 len(length)을 계산합니다.
+templarswill 모드의 khalasembrace 모드 : khalascelerity와 기본적인 것은 같지만 len(length)을 계산합니다.
 
-templarwill 모드의 khalashighlight 모드 : max를 계산합니다.
+templarswill 모드의 khalashighlight 모드 : max를 계산합니다.
 
-templarwill 모드의 khalaslowlight 모드 : min을 계산합니다.
+templarswill 모드의 khalaslowlight 모드 : min을 계산합니다.
 
 
 HERO - Tracer
@@ -171,7 +171,7 @@ heros of storm - eso는 고급스러운 그 컨셉에 맞게 문법도 엄격하고 코드도 깁니다. 
 
 알리기 위해 무조건 heros of storm 이라고 작성해야 합니다. 그런 다음에 그 다음 줄부터 4줄씩 끊어 읽는 작업을 합니다.
 
-Tassadar 클래스의 psiinfusion의 focusbeam을 예로 들어보죠.
+Tassadar 영웅의 psiinfusion의 focusbeam을 예로 들어보죠.
 
 Tassadar
 psiinfusion;focusbeam
@@ -244,7 +244,7 @@ hos-eso는 시.공.좋.아 라서 reading code 3,4에서는 storm을 구분자로 사용합니다. �
 
 astormb
 
-Tracer 클래스는 storm구분자로 구분된 두 문자열을 이름으로 가진 변수로 찾아 모드에 따라 그 둘을 비교합니다. 그런 뒤에 위에서 설명한
+Tracer 영웅는 storm구분자로 구분된 두 문자열을 이름으로 가진 변수로 찾아 모드에 따라 그 둘을 비교합니다. 그런 뒤에 위에서 설명한
 
 대로 스킬-기능이 작동하죠.
 
