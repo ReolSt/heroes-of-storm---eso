@@ -7,10 +7,14 @@ codelines = f.readlines()
 variables = {}
 judge = 0
 truelineplus = 0
+onephase = 0
+originop = 0
+
 
 for line in range(1, len(codelines), 4):
 
     eofcheck = codelines[line]
+
     if eofcheck == 'nexus':
         break
 
@@ -20,13 +24,31 @@ for line in range(1, len(codelines), 4):
         truelineplus -= 4
         rc = ['', '', '', '']
 
+
     if rc[0][:8] == 'Tassadar':
         ta = hos_heroes.Tassadar(rc[2])
+
         if rc[1][:11] == 'psiinfusion':
             ta.psiinfusion(variables, rc[3], rc[1][12:])
 
-            if rc[1][12:] == 'psiinfusion;templarswill':
+            if rc[1][12:] == 'templarswill':
                 ta.psiinfusion(variables, ta.templarswill(variables, rc[3], rc[1][25:]))
+
+    if rc[0][:7] == 'Artanis':
+        ar = hos_heroes.Artanis()
+
+        if rc[1][:6] == 'append':
+            ar.append(variables, rc[2], rc[3], rc[1][7:13], rc[14:])
+
+        if rc[1][:9] == 'listsorts':
+            ar.listsorts(variables, rc[2], rc[1][10:])
+
+        if rc[1][:3] == 'pop':
+            ar.pop(variables, rc[2], rc[3])
+
+        if rc[1][:5] == 'count':
+            anum = rc[2].split("storm")
+            ar.count(variables, anum[0], anum[1], rc[3], rc[1][6:])
 
     if rc[0][:6] == 'Jaina':
         ja = hos_heroes.Jaina()
@@ -41,13 +63,16 @@ for line in range(1, len(codelines), 4):
     if rc[0][:7] == 'Tracer':
         absplit = rc[2].split("storm")
         ts = hos_heroes.Tracer(absplit[0], absplit[1])
-        gotolinesplit = rc[3].split("storm")
 
         if rc[1][:11] == 'spatialecho':
+            gotolinesplit = rc[3].split("storm")
             judge = ts.spatialecho(variables, rc[1][12:], line, gotolinesplit[0])  # false일경우 line += gotolinesplit[0]
             truelineplus = int(gotolinesplit[1])
+
         if rc[1][:12] == 'totalrecall':
-            pass
+            judge = ts.totalrecall(variables, rc[13:], line)
+            onephase = int(rc[3])
+            originop = int(rc[3])
 
     if rc[0][:9] == 'Ragnaros':
         ra = hos_heroes.Ragnaros()
@@ -57,5 +82,11 @@ for line in range(1, len(codelines), 4):
 
         if rc[1][:14] == 'handofragnaros':
             variables[rc[3]] = ra.handofragnaros(rc[1][15:], rc[2])
+
+    if rc[0][rc[0].find(';') + 1:] == 'compositiona' and judge == 1 and onephase != 0:
+        onephase -= 4
+        if onephase == 0:
+            line -= (originop + 4)
+            judge = 0
 
 print(variables)
