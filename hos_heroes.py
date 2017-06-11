@@ -174,6 +174,7 @@ class Jaina:
         self.cvalue = cvalue
 
         if mode == 'wintersreach':
+            
             variables[key] = float(self.var) + float(cvalue)
 
         if mode == 'lingeringchill':

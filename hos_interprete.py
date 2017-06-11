@@ -56,7 +56,7 @@ for line in range(1, len(codelines), 4):
         if rc[1][:9] == 'frostbolt':
             ja.frostbolt(variables, rc[2], float(rc[3]), rc[1][10:])
 
-        if rc[1][:16] == 'arcaneintellect':
+        if rc[1][:15] == 'arcaneintellect':
             ab = rc[2].split("storm")
             ja.arcaneintellect(variables, ab[0], ab[1], rc[3], rc[1][17:])
 
@@ -69,7 +69,7 @@ for line in range(1, len(codelines), 4):
             judge = ts.spatialecho(variables, rc[1][12:], line, gotolinesplit[0])  # false일경우 line += gotolinesplit[0]
             truelineplus = int(gotolinesplit[1])
 
-        if rc[1][:12] == 'totalrecall':
+        if rc[1][:11] == 'totalrecall':
             judge = ts.totalrecall(variables, rc[13:], line)
             onephase = int(rc[3])
             originop = int(rc[3])
@@ -89,4 +89,5 @@ for line in range(1, len(codelines), 4):
             line -= (originop + 4)
             judge = 0
 
+    print(line)
 print(variables)
