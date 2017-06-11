@@ -30,8 +30,13 @@ for line in range(1, len(codelines), 4):
 
     if rc[0][:6] == 'Jaina':
         ja = hos_heroes.Jaina()
-        if rc[1][:10] == 'frostbolt':
+
+        if rc[1][:9] == 'frostbolt':
             ja.frostbolt(variables, rc[2], float(rc[3]), rc[1][10:])
+
+        if rc[1][:16] == 'arcaneintellect':
+            ab = rc[2].split("storm")
+            ja.arcaneintellect(variables, ab[0], ab[1], rc[3], rc[1][17:])
 
     if rc[0][:7] == 'Tracer':
         absplit = rc[2].split("storm")

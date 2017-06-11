@@ -85,25 +85,25 @@ class Tracer:
         self.linetogo = linelimit - lineminus
 
         if mode =='':
-            while self.valuea > self.valueb:
+            if self.valuea > self.valueb:
                 self.line = self.linetogo
                 pass
         if mode == '':
-            while self.valuea >= self.valueb:
+            if self.valuea >= self.valueb:
                 self.line = self.linetogo
                 pass
         if mode == '':
-            while self.valuea < self.valueb:
+            if self.valuea < self.valueb:
                 self.line = self.linetogo
                 pass
         if mode == '':
-            while self.valuea <= self.valueb:
+            if self.valuea <= self.valueb:
                 pass
         if mode == '':
-            while self.valuea == self.valueb:
+            if self.valuea == self.valueb:
                 pass
         if mode == '':
-            while self.valuea != self.valueb:
+            if self.valuea != self.valueb:
                 pass
 
 class Jaina:
@@ -114,13 +114,35 @@ class Jaina:
         self.mode = mode
 
         if self.mode == 'wintersreach':
-            variables[key] = self.var + cvalue
+            variables[key] = float(self.var) + float(cvalue)
         if self.mode == 'lingeringchill':
-            variables[key] = self.var - cvalue
+            variables[key] = float(self.var) - float(cvalue)
         if self.mode == 'deepchill':
             variables[key] = float(self.var) * float(cvalue)
         if self.mode == 'conjurerspursuit':
             variables[key] = float(self.var) / float(cvalue)
+        if self.mode == 'frostbitten':
+            variables[key] = float(self.var) % float(cvalue)
+
+    def arcaneintellect(self, variables, akey, bkey, resultkey, mode):
+        self.a = variables[akey]
+        self.b = variables[bkey]
+        variables[resultkey] = float(0)
+
+        if mode == 'plus':
+            self.resultkey = self.a + self.b
+        if mode == 'minus':
+            self.resultkey = self.a - self.b
+        if mode == 'multiple':
+            self.resultkey = self.a * self.b
+        if mode == 'divide':
+            self.resultkey = self.a / self.b
+        if mode == 'remainder':
+            self.resultkey = self.a % self.b
+        if mode == 'square':
+            self.resultkey = self.a ** self.b
+
+        variables[resultkey] = self.resultkey
 
 class Ragnaros:
     def livingmeteor(self, variables, mode = 'lavasurge', willprinted = ''):
